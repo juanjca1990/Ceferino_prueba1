@@ -239,24 +239,6 @@ function App() {
         </div>
       </section>
 
-      <section className="trust-bar section-wrap" aria-label="Experiencia">
-        <p>
-          <SplitText text="Un buen comienzo para marcas que van en serio." />
-        </p>
-        <div className="trust-stat">
-          <strong>+30</strong>
-          <span>proyectos con propósito</span>
-        </div>
-        <div className="trust-stat">
-          <strong>100%</strong>
-          <span>hecho a tu medida</span>
-        </div>
-        <div className="trust-stat">
-          <strong>3×</strong>
-          <span>más claridad para crecer</span>
-        </div>
-      </section>
-
       <section className="services section-wrap" id="servicios">
         <div className="fleet-heading">
           <p className="eyebrow">Nuestra flota</p>

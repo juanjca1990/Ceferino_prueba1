@@ -1,28 +1,62 @@
 import { useEffect, useRef, useState } from 'react'
-import colectivoImage from '../imagenes/ceferino_colectivo1.png'
-import weekdaysSchedule from '../imagenes/horarios_1.png'
-import specialSchedule from '../imagenes/horarios_2.png'
-import holidaysSchedule from '../imagenes/horarios_3.png'
-import faresImage from '../imagenes/tarifas_1.png'
+import colectivoImage from '../imagenes/imagen_principal.jpeg'
+import doubleDeckUnit1 from '../imagenes/doble_piso1.jpeg'
+import doubleDeckUnit2 from '../imagenes/doble_piso2.jpeg'
+import doubleDeckUnit3 from '../imagenes/doble_piso3.jpeg'
+import doubleDeckUnit4 from '../imagenes/doble_piso4.jpeg'
+import fleetRangeImage from '../imagenes/unidades.jpeg'
+import accessibilityImage from '../imagenes/butaca3.jpeg'
+import seatViewImage from '../imagenes/butaca4.png'
+import seatDetailImage from '../imagenes/butaca5.png'
+import onboardService1 from '../imagenes/servicio1.jpeg'
+import onboardService2 from '../imagenes/servicio2.png'
+import onboardService3 from '../imagenes/servicio3.jpeg'
+import onboardService4 from '../imagenes/servicio4.jpeg'
+import confidenceImage from '../imagenes/confianza.jpeg'
+import ceferinoLogo from '../imagenes/logo_cefe1.jpeg'
 import './App.css'
 
 const currentYear = new Date().getFullYear()
 
-const schedules = [
+const doubleDeckPhotos = [
   {
-    image: weekdaysSchedule,
-    title: 'Lunes a viernes',
-    alt: 'Horarios de lunes a viernes',
+    image: doubleDeckUnit1,
+    alt: 'Colectivo doble piso de Ceferino en ruta',
   },
   {
-    image: specialSchedule,
-    title: 'Horarios especiales',
-    alt: 'Horarios especiales por aniversario',
+    image: doubleDeckUnit2,
+    alt: 'Interior de una unidad doble piso de Ceferino',
   },
   {
-    image: holidaysSchedule,
-    title: 'Domingos y feriados',
-    alt: 'Horarios de domingos y feriados',
+    image: doubleDeckUnit3,
+    alt: 'Unidades doble piso de Ceferino',
+  },
+  {
+    image: doubleDeckUnit4,
+    alt: 'Colectivo doble piso de Ceferino en ruta',
+  },
+]
+
+const onboardServices = [
+  {
+    image: onboardService1,
+    title: 'Conexión a bordo',
+    alt: 'Pasajera usando una computadora portátil en su asiento',
+  },
+  {
+    image: onboardService2,
+    title: 'Conector de carga a tus manos',
+    alt: 'Conector ubicado junto a una butaca',
+  },
+  {
+    image: onboardService3,
+    title: 'Bebidas a bordo',
+    alt: 'Dispensadores de bebidas entre las butacas',
+  },
+  {
+    image: onboardService4,
+    title: 'Entretenimiento',
+    alt: 'Pantallas de entretenimiento frente a las butacas',
   },
 ]
 
@@ -39,6 +73,42 @@ function ArrowIcon({ diagonal = false }) {
       ) : (
         <path d="M3 10h13m-5-5 5 5-5 5" />
       )}
+    </svg>
+  )
+}
+
+function WhatsAppIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="contact-icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20.4 11.6a8.5 8.5 0 0 1-12.6 7.5L3 20l.9-4.6a8.5 8.5 0 1 1 16.5-3.8Z" />
+      <path d="M8.2 7.9c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4 0 .6l-.6.7c-.2.2-.2.4-.1.6.4.8 1 1.4 1.8 1.9.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.3.4.5 0 .3-.2 1.4-.8 1.7-.5.3-1.1.4-1.8.2-1.1-.3-2.4-1-3.5-2.1-1.1-1-1.9-2.3-2.2-3.4-.3-.8-.1-1.5.1-2.2Z" />
+    </svg>
+  )
+}
+
+function MailIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="contact-icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m4 7 8 6 8-6" />
     </svg>
   )
 }
@@ -103,9 +173,7 @@ function App() {
     <main>
       <header className="site-header">
         <a className="wordmark" href="#inicio" onClick={closeMenu}>
-          <span className="wordmark-mark" aria-hidden="true">
-            c.
-          </span>
+          <img className="wordmark-logo" src={ceferinoLogo} alt="" />
           ceferino
         </a>
 
@@ -122,10 +190,16 @@ function App() {
 
         <nav className={`navigation${menuOpen ? ' is-open' : ''}`}>
           <a href="#servicios" onClick={closeMenu}>
-            Horarios
+            Unidades
           </a>
-          <a href="#proyectos" onClick={closeMenu}>
-            Tarifas
+          <a href="#confort" onClick={closeMenu}>
+            Confort
+          </a>
+          <a href="#servicios-a-bordo" onClick={closeMenu}>
+            Servicios
+          </a>
+          <a href="#confianza" onClick={closeMenu}>
+            Confianza
           </a>
           <a href="#nosotros" onClick={closeMenu}>
             Sobre nosotros
@@ -145,25 +219,21 @@ function App() {
         <div className="hero-copy">
           <p className="eyebrow">
             <span className="eyebrow-dot" />
-            Estudio creativo independiente
+            Transportes Ceferino
           </p>
           <h1 className="split-heading">
-            <SplitText text="Ideas que se ven bien." />
+            <SplitText text="La calidad se construye" />
             <br />
-            <SplitText
-              className="hero-title-accent"
-              text="Resultados que se sienten."
-            />
           </h1>
           <p className="hero-description">
-            <SplitText text="Creamos marcas y experiencias digitales para negocios con ganas de crecer. Estrategia, diseño y desarrollo, todo en un mismo lugar." />
+            <SplitText text="Años de experiencia y un compromiso que se renueva en cada recorrido" />
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#contacto">
-              Empezar un proyecto <ArrowIcon />
+              Contactanos <ArrowIcon />
             </a>
-            <a className="text-link" href="#proyectos">
-              Ver nuestro trabajo
+            <a className="text-link" href="#servicios-a-bordo">
+              Ver nuestros servicios
             </a>
           </div>
         </div>
@@ -188,98 +258,185 @@ function App() {
       </section>
 
       <section className="services section-wrap" id="servicios">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">Información para viajar</p>
-            <h2><SplitText text="Horarios" /></h2>
-          </div>
-          <p className="section-intro">
-            <SplitText text="Consultá los horarios de nuestros servicios y planificá tu viaje." />
-          </p>
+        <div className="fleet-heading">
+          <p className="eyebrow">Nuestra flota</p>
+          <h2 className="fleet-title">
+            <SplitText text="Servicio doble piso, unidades pensadas para viajar mejor" />
+          </h2>
         </div>
 
-        <div className="schedule-grid">
-          {schedules.map((schedule) => (
-            <article className="schedule-card" key={schedule.title}>
+        <div className="fleet-gallery">
+          {doubleDeckPhotos.map((photo) => (
+            <figure className="fleet-photo" key={photo.image}>
               <img
-                className="schedule-image"
-                src={schedule.image}
-                alt={schedule.alt}
+                src={photo.image}
+                alt={photo.alt}
+                loading="lazy"
               />
-              <h3><SplitText text={schedule.title} /></h3>
+            </figure>
+          ))}
+        </div>
+        <div className="fleet-range">
+          <img
+            src={fleetRangeImage}
+            alt="Minibús y ómnibus de Ceferino estacionados juntos"
+            loading="lazy"
+          />
+          <p className="fleet-range-copy">
+            <SplitText text="Unidades para cada grupo elegí, la opción ideal según la cantidad de pasajeros." />
+          </p>
+        </div>
+      </section>
+
+      <section className="comfort-section" id="confort">
+        <div className="comfort-layout section-wrap">
+          <div className="comfort-split">
+            <figure className="comfort-panel">
+              <img
+                src={seatViewImage}
+                alt="Vista del pasillo y las butacas reclinables del colectivo"
+                loading="lazy"
+              />
+            </figure>
+            <figure className="comfort-panel">
+              <img
+                src={seatDetailImage}
+                alt="Detalle de las butacas amplias del colectivo"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+          <div className="comfort-copy">
+            <p className="eyebrow">Pensado para tu viaje</p>
+            <h2 className="comfort-title" id="comfort-title">
+              <SplitText text="Confort en cada recorrido" />
+            </h2>
+            <p className="comfort-description">
+              <SplitText text="Cada detalle tiene un propósito. Porque el confort también forma parte del viaje." />
+            </p>
+          </div>
+        </div>
+        <div className="comfort-accessibility section-wrap">
+          <p className="comfort-accessibility-copy">
+            <SplitText text="Asientos confortables y espaciosos, incluyendo un sector especial para personas con movilidad reducida" />
+          </p>
+          <figure className="comfort-accessibility-image">
+            <img
+              src={accessibilityImage}
+              alt="Butaca y sector accesible para personas con movilidad reducida"
+              loading="lazy"
+            />
+          </figure>
+
+        </div>
+      </section>
+
+      <section
+        className="onboard-services section-wrap"
+        id="servicios-a-bordo"
+        aria-labelledby="onboard-services-title"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Una experiencia más completa</p>
+            <h2 id="onboard-services-title">
+              <SplitText text="Servicios a bordo" />
+            </h2>
+          </div>
+          <p className="section-intro">
+            <SplitText text="Detalles que acompañan y hacen más agradable cada viaje." />
+          </p>
+        </div>
+        <div className="onboard-services-grid">
+          {onboardServices.map((service) => (
+            <article className="onboard-service-card" key={service.title}>
+              <img src={service.image} alt={service.alt} loading="lazy" />
+              <h3>
+                <SplitText text={service.title} />
+              </h3>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="work-section" id="proyectos">
-        <div className="section-wrap">
-          <div className="section-heading work-heading">
-            <div>
-              <p className="eyebrow">Información para viajar</p>
-              <h2><SplitText text="Tarifas vigentes" /></h2>
-            </div>
-            <p className="section-intro">
-              <SplitText text="Consultá los valores actuales de nuestros recorridos." />
-            </p>
+      <section
+        className="confidence-section"
+        id="confianza"
+        aria-labelledby="confidence-title"
+      >
+        <div className="confidence-inner section-wrap">
+          <img
+            className="confidence-image"
+            src={confidenceImage}
+            alt="Pasajera disfrutando de su viaje en colectivo"
+            loading="lazy"
+          />
+          <div className="confidence-copy">
+            <p className="eyebrow">La experiencia de viajar con Ceferino</p>
+            <h2 className="confidence-title" id="confidence-title">
+              <SplitText text="La confianza de quienes nos eligen. La confianza que construimos viaje a viaje." />
+            </h2>
           </div>
-
-          <article className="schedule-card tariff-card">
-            <img
-              className="schedule-image"
-              src={faresImage}
-              alt="Tarifas vigentes de los recorridos de Ceferino"
-            />
-            <h3><SplitText text="Tarifas de los recorridos" /></h3>
-          </article>
         </div>
       </section>
 
       <section className="about section-wrap" id="nosotros">
         <div className="about-marker">
-          <span className="about-stamp">C</span>
-          <span>Pequeño equipo.<br />Gran atención al detalle.</span>
+          <img className="about-logo" src={ceferinoLogo} alt="Logo de Ceferino" />
+          <span>Desde 1989<br />Trelew, Chubut</span>
         </div>
         <div className="about-copy">
-          <p className="eyebrow">Hola, somos Ceferino</p>
-          <h2><SplitText text="Trabajamos contigo, no solo para ti." /></h2>
+          <p className="eyebrow">Nuestra historia</p>
+          <h2><SplitText text="Nosotros" /></h2>
           <p>
-            <SplitText text="Somos un estudio independiente que cree en las buenas ideas y en hacer las cosas con intención. Nos gusta escuchar, hacer las preguntas importantes y convertir desafíos en marcas que conectan." />
+            <SplitText text="Desde 1989, en Ceferino construimos mucho más que una empresa de transporte: construimos una historia de esfuerzo, compromiso y pasión por conectar personas y comunidades." />
           </p>
-          <a className="text-link" href="#contacto">
-            Conocé nuestra forma de trabajar <ArrowIcon />
-          </a>
-        </div>
-        <div className="about-note">
-          <span>Una buena marca no grita.</span>
-          <strong>Se hace escuchar.</strong>
-          <span className="note-spark">✳</span>
+          <p>
+            <SplitText text="Nacimos en Trelew con un sueño y, a lo largo de más de 35 años, crecimos acompañando el desarrollo de nuestra región, recorriendo nuevos caminos y asumiendo cada desafío con la misma responsabilidad de nuestros comienzos." />
+          </p>
+          <p>
+            <SplitText text="Hoy contamos con una flota moderna de más de 20 unidades, tecnología de vanguardia y servicios adaptados a las necesidades de nuestros pasajeros. Pero, por encima de todo, seguimos manteniendo aquello que nos identifica desde el primer día: el trabajo en equipo, la cercanía y el compromiso con nuestra gente." />
+          </p>
+          <p className="about-signature">
+            <strong>Ceferino, más de 35 años creciendo juntos y compartiendo el camino.</strong>
+          </p>
         </div>
       </section>
 
       <section className="contact-section" id="contacto">
         <div className="contact-inner section-wrap">
-          <p className="eyebrow">Tu próximo capítulo empieza acá</p>
-          <h2><SplitText text="¿Tenés una idea dando vueltas?" /></h2>
+          <p className="eyebrow">Estamos para ayudarte</p>
+          <h2><SplitText text="Tu próximo viaje, planealo con nosotros." /></h2>
           <p>
-            <SplitText text="Contanos un poco. Nos encantaría escuchar sobre tu proyecto." />
+            <SplitText text="Escribinos para organizar tu próximo recorrido." />
           </p>
-          <a className="button button-light" href="mailto:hola@ceferino.studio">
-            Escribinos a hola@ceferino.studio <ArrowIcon diagonal />
-          </a>
+          <div className="contact-actions">
+            <a
+              className="button button-light contact-button"
+              href="https://wa.me/?text=Hola%2C%20quiero%20hacer%20una%20consulta%20sobre%20Ceferino"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <WhatsAppIcon /> WhatsApp
+            </a>
+            <a
+              className="button contact-button contact-button-email"
+              href="mailto:juancruzalvarez1990@gmail.com"
+            >
+              <MailIcon /> Email
+            </a>
+          </div>
           <span className="contact-decoration" aria-hidden="true">c.</span>
         </div>
       </section>
 
       <footer className="site-footer section-wrap">
         <a className="wordmark" href="#inicio">
-          <span className="wordmark-mark" aria-hidden="true">
-            c.
-          </span>
+          <img className="wordmark-logo" src={ceferinoLogo} alt="" />
           ceferino
         </a>
-        <p>Ideas con intención, de principio a fin.</p>
-        <span>© {currentYear} Ceferino Estudio</span>
+        <p>Viaja con nosotros.</p>
+        <span>© {currentYear} Transportes Ceferino</span>
       </footer>
     </main>
   )

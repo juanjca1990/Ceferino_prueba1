@@ -232,9 +232,6 @@ function App() {
             <a className="button button-dark" href="#contacto">
               Contactanos <ArrowIcon />
             </a>
-            <a className="text-link" href="#servicios-a-bordo">
-              Ver nuestros servicios
-            </a>
           </div>
         </div>
       </section>
